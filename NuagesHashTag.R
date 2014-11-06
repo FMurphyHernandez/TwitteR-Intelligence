@@ -4,6 +4,13 @@ install.packages("wordcloud")
 install.packages("tm")
 install.packages('RColorBrewer')
 
+
+  library("ROAuth")
+  library("twitteR")
+  library("wordcloud")
+  library("tm")
+  library(RColorBrewer)
+
   download.file(url="http://curl.haxx.se/ca/cacert.pem", destfile="cacert.pem")
   KEY<-'OMpVDANlNCYr13xHRzOCZJDtg'
   SECRET<-'pSR2wofinQu0Uni8FwOfSC50MGIk4HvW9CA5LbpmkDnLSV4h1r'
