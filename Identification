@@ -22,3 +22,6 @@ install.packages('RColorBrewer')
 cred$handshake(cainfo="cacert.pem")
 ##PARAR PARA METER PIN
 save(cred, file="twitter authentication.Rdata")
+###
+library(RCurl) Corrección
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
