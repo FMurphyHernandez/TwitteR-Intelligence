@@ -6,7 +6,7 @@ library("twitteR")
 library(RODBC)
 load(file="twitter authentication.Rdata")
 registerTwitterOAuth(cred)
-chanel <- odbcConnect("Ral98SN",uid = "TEMPRUSER", pwd = "Mexic.17")
+chanel <- odbcConnect("Ral98SN",uid = "********", pwd = "**********")
 cadsql<-'select id from dbo.Tweets'
 Train<- sqlQuery(chanel, cadsql)
 Train<-as.vector(Train)
