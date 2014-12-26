@@ -1,0 +1,13 @@
+use twitter
+
+
+col1 = db.timeline_parse
+col2 = db.tl_MiMovistarMX
+
+
+n=col1.count()-1
+for (var i = 0; i <= n; i++) {
+	m=col1.find({},{_id:0,id:1})[i].id
+	col2.update(col2.find({"id":m}),col1.find()[i],{upsert: 1}) 
+	}
+col1.drop()
