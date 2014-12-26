@@ -1,0 +1,65 @@
+
+db.tweets.aggregate(
+   [
+     { $match : { "entities.user_mentions.id":45886921 } },
+     {
+       $group:
+         {
+           _id: { day: { $dayOfYear: "$created_at"}, year: { $year: "$created_at" } },
+          
+           count: { $sum: 1 }
+         }
+     }
+   ]
+)
+
+
+
+
+db.tweets.aggregate(
+   [
+     { $match : { "entities.user_mentions.id":45886921,"in_reply_to_status_id":null  } },
+     {
+       $group:
+         {
+           _id: { day: { $dayOfYear: "$created_at"}, year: { $year: "$created_at" } },
+          
+           count: { $sum: 1 }
+         }
+     }
+   ]
+)
+
+
+db.tweets.count({ "entities.user_mentions.id":45886921 } )
+
+
+db.tweets.count({ "entities.user_mentions.id":45886921,"in_reply_to_status_id":null } )
+
+
+
+
+
+
+1-(db.tweets.count({ "entities.user_mentions.id":45886921,"in_reply_to_status_id":null } )/db.tweets.count({ "entities.user_mentions.id":45886921 } ))
+
+
+tap search --consumer-key "cZyzPC0o60ZnYzsGIGxlclpkX" --consumer-secret "A3F0pEDKPbIAVezJoLc6qmi5oq0SUfe3yd7RTsVVNkz4oBzK5q" -q "@mimovistarmx OR @serviciotelcel OR @isuacell24_7 OR movistarmx OR telcel OR unefon OR nextel OR iusacell" -v DEBUG
+
+
+
+
+
+
+
+
+
+tap stream --consumer-key "pah45Tc4c52xwmVswcL4DbfVc" --consumer-secret "n4BhBD2ld9Ssrt74HxH18q4hbQCYYawkQ0LgW48SmgO2PCLmfu" --access-token "2914168396-J0znFFnC6KDElt2HbLQxm1i2hiy2JQYvZp2XWEo" --access-token-secret " F2P5qBhjt198QsyxFUae1VQkHqRMX9dhrjo66YVFSYy3x" --track "@mimovistarmx OR @serviciotelcel OR @isuacell24_7 OR movistarmx OR telcel OR unefon OR nextel OR iusacell" -v DEBUG
+
+
+
+db.tweets.find( {"text":/.*yrus.*/}).count()
+
+
+
+
