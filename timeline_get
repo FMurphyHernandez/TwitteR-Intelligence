@@ -1,0 +1,24 @@
+pip install twitter
+
+
+APP_KEY=*************
+APP_SECRET=******************************
+OAUTH_TOKEN=****************************************
+OAUTH_TOKEN_SECRET="******************************"
+
+
+from twitter import *
+import time
+import pymongo
+
+t = Twitter(auth=OAuth(OAUTH_TOKEN,OAUTH_TOKEN_SECRET,APP_KEY, APP_SECRET),format="json")
+client = pymongo.MongoClient("localhost", 27017)
+
+var=1
+while(var==1):	
+	m=t.statuses.user_timeline(screen_name="MiMovistarMX",count=300)
+	
+	db = client.twitter
+	collection=db.timeline_parse
+	collection.insert(m)
+	time.sleep(3600)
