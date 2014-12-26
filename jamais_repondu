@@ -1,0 +1,32 @@
+use twitter
+
+col1 = db.tweets
+col2 = db.tl_MiMovistarMX
+
+
+get_userid = function(doc) { return doc.user.id; }
+x=col1.find({ "entities.user_mentions.id":45886921 } ,{_id:0,"user.id":1}).map( get_userid )
+
+
+
+col1.count({ "entities.user_mentions.id":45886921 } ,{})
+col2.count({"entities.user_mentions.id":{ $nin: x}})
+
+
+col2.find({"entities.user_mentions.id":{ $nin: x}})
+
+
+col2.aggregate(
+   [
+     { $match : {"entities.user_mentions.id":{ $nin: x}} },
+     {
+       $group:
+         {
+           _id: { day: { $dayOfYear: "$created_at"}, year: { $year: "$created_at" } },
+          
+           count: { $sum: 1 }
+         }
+     }
+   ]
+)
+
